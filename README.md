@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/31322116/README.2.md)
 # 🔐 SecureIoT — PKI-Based mTLS Authentication & AI Anomaly Detection
 
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
@@ -38,36 +39,36 @@ The result is a defense-in-depth architecture: cryptographic identity at the net
 
 ```mermaid
 flowchart LR
-    subgraph iot["IoT Layer"]
+    subgraph IoT Layer
         D1["IoT Device 1"]
         D2["IoT Device 2"]
         D3["IoT Device N"]
     end
 
-    subgraph sec["Security Layer"]
-        SE["SoftHSM2 / PKCS#11<br/>Simulated Secure Element"]
-        PKI["Certificate Authority (PKI)"]
+    subgraph Security Layer
+        SE["SoftHSM2 / PKCS11 - Simulated Secure Element"]
+        PKI["Certificate Authority - PKI"]
     end
 
-    subgraph comm["Communication"]
-        MB["Mosquitto MQTT Broker<br/>(mTLS enforced, CN=mosquitto)"]
+    subgraph Communication
+        MB["Mosquitto MQTT Broker - mTLS enforced, CN=mosquitto"]
     end
 
-    subgraph backend["Backend"]
+    subgraph Backend
         API["FastAPI Service"]
-        DB[("InfluxDB")]
+        DB["InfluxDB"]
         GF["Grafana Dashboards"]
     end
 
-    subgraph ai["AI Detection Pipeline"]
+    subgraph AI Detection Pipeline
         LP["log_parser.py"]
-        AD["ai_detector.py<br/>Isolation Forest"]
+        AD["ai_detector.py - Isolation Forest"]
     end
 
     PKI -.->|issues certs| SE
-    SE -.->|provisions device identity| D1
-    SE -.->|provisions device identity| D2
-    SE -.->|provisions device identity| D3
+    SE -.->|provisions identity| D1
+    SE -.->|provisions identity| D2
+    SE -.->|provisions identity| D3
     PKI -.->|server cert| MB
 
     D1 -->|mTLS| MB
@@ -75,7 +76,7 @@ flowchart LR
     D3 -->|mTLS| MB
 
     MB --> API --> DB --> GF
-    MB -.->|logs| LP --> AD -.->|anomaly alerts| GF
+    MB -.->|logs| LP --> AD -.->|alerts| GF
 ```
 
 *(This Mermaid diagram renders natively on GitHub. Swap in a screenshot of your Grafana dashboard below it if you want extra polish.)*
