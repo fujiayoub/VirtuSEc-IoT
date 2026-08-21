@@ -1,0 +1,39 @@
+# Secrets & environment
+.env
+.env.*
+!.env.example
+
+# PKI - private keys and certs (keep the *scripts* that generate these, not the output)
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+ca-private/
+private/
+
+# SoftHSM2 token storage (contains key material)
+softhsm2/tokens/
+*.db
+
+# Docker local overrides
+docker-compose.override.yml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# InfluxDB / Grafana local data volumes
+influxdb-data/
+grafana-data/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
